@@ -1,4 +1,4 @@
-import {  Outfit } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/component/Navbar";
 import Footer from "@/component/Footer";
@@ -20,10 +20,12 @@ export default function RootLayout({ children }) {
       className={`${OutFitFont.className} h-full antialiased`}
     >
       <body>
-        <Navbar/>
-        {children}
-        <Footer/>
-        </body>
+        <Navbar />
+        <main className="container mx-auto">
+          {children}
+        </main>
+        <Footer />
+      </body>
     </html>
   );
 }
