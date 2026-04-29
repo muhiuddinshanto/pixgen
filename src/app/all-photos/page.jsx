@@ -1,19 +1,27 @@
+import Category from "@/component/Category";
 import PhotoCard from "@/component/PhotoCard";
+import Link from "next/link";
 
 
-const AllPhotosPage = async() => {
+const AllPhotosPage = async({searchParams}) => {
 
+    const {category} = await searchParams;
     const res = await fetch('https://pixgen-mu-nine.vercel.app/data.json')
     const photos = await res.json();
-console.log(photos);
+
+    const filtaredPhotos = category ? photos.filter(photo=> photo.category.toLowerCase() == category.toLowerCase()) : photos
+    console.log(category);
+    
+
 
     return (
-        <div>
+        <div className="space-y-3">
             
-                <h2 className="text-2xl font-bold m-6">All Photos</h2>
+                <Link href={'/all-photos'}><h2 className="text-2xl font-bold m-6">All Photos</h2></Link>
+                <Category/>
                 <div className="grid grid-cols-4 gap-5">
                     {
-                        photos.map(photo=> <PhotoCard key={photo.id} photo={photo}></PhotoCard>)
+                        filtaredPhotos.map(photo=> <PhotoCard key={photo.id} photo={photo}></PhotoCard>)
                     }
                 </div>
             

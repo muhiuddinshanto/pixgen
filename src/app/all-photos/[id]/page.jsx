@@ -9,10 +9,9 @@ const PhotoDetailsPage = async ({ params }) => {
     const res = await fetch('https://pixgen-mu-nine.vercel.app/data.json')
     const photos = await res.json();
     const photo = photos.find(p=> p.id==id);
-    console.log(photo);
+ 
     
-    console.log(id);
-
+  
     return (
         <Card className=''>
             <Image
